@@ -5,156 +5,320 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Precios y Cotización - Dental Coronado</title>
     <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --accent: #25d366;
+            --accent-hover: #16a34a;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
+            line-height: 1.5;
         }
+
         .container {
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
         }
-        h1, h2 {
-            color: #0066cc;
+
+        .header {
             text-align: center;
+            margin-bottom: 35px;
         }
+
+        .header h1 {
+            color: var(--primary);
+            margin: 0 0 8px 0;
+            font-size: 2rem;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 1.05rem;
+        }
+
+        .patient-box {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
         .form-group {
             margin-bottom: 15px;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+
+        .form-group:last-child {
+            margin-bottom: 0;
         }
+
+        label.field-label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
         input[type="text"], input[type="email"] {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
             box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #fff;
         }
+
+        input[type="text"]:focus, input[type="email"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        h3.section-title {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+        }
+
         .treatment-list {
             list-style: none;
             padding: 0;
-            margin: 20px 0;
+            margin: 0 0 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
+
         .treatment-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
+            padding: 14px 18px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
+
         .treatment-item:hover {
-            background-color: #f9f9f9;
+            border-color: var(--primary);
+            background-color: #f0f9ff;
         }
-        .total-section {
-            font-size: 1.2em;
-            font-weight: bold;
-            text-align: right;
-            margin: 20px 0;
+
+        .treatment-item label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 500;
         }
+
+        .treatment-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .price-tag {
+            font-weight: 600;
+            color: var(--primary-dark);
+            background: #e0f2fe;
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .summary-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .summary-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .summary-total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
         .btn-whatsapp {
             display: block;
             width: 100%;
-            background-color: #25d366;
+            background-color: var(--accent);
             color: white;
             text-align: center;
-            padding: 15px;
-            font-size: 1.1em;
-            font-weight: bold;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
             cursor: pointer;
             text-decoration: none;
             box-sizing: border-box;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
         }
+
         .btn-whatsapp:hover {
-            background-color: #1ebe5d;
+            background-color: var(--accent-hover);
+        }
+
+        .btn-whatsapp:active {
+            transform: scale(0.99);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Dental Coronado</h1>
-    <h2>Lista de Precios y Cotización Interactiva</h2>
+    <div class="header">
+        <h1>Dental Coronado</h1>
+        <p>Selecciona tus tratamientos para armar tu cotización</p>
+    </div>
     
-    <div class="form-group">
-        <label for="nombrePaciente">Nombre del Paciente:</label>
-        <input type="text" id="nombrePaciente" placeholder="Escribe tu nombre completo">
+    <div class="patient-box">
+        <div class="form-group">
+            <label class="field-label" for="nombrePaciente">Nombre completo:</label>
+            <input type="text" id="nombrePaciente" placeholder="Ej. Juan Pérez">
+        </div>
+        <div class="form-group" style="margin-top: 15px;">
+            <label class="field-label" for="correoPaciente">Correo electrónico (opcional):</label>
+            <input type="email" id="correoPaciente" placeholder="tucorreo@ejemplo.com">
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="correoPaciente">Correo Electrónico:</label>
-        <input type="email" id="correoPaciente" placeholder="correo@ejemplo.com">
-    </div>
-
-    <h3>Selecciona los tratamientos que necesitas:</h3>
+    <h3 class="section-title">Procedimientos Disponibles</h3>
     
     <ul class="treatment-list" id="listaTratamientos">
         <li class="treatment-item">
-            <label><input type="checkbox" value="Limpieza dental profesional (profilaxis)" data-precio="500"> Limpieza dental profesional (profilaxis)</label>
-            <span>$600 MXN</span>
+            <label>
+                <input type="checkbox" value="Limpieza dental profesional (profilaxis)" data-precio="500">
+                <span>Limpieza dental profesional (profilaxis)</span>
+            </label>
+            <span class="price-tag">$500 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Revisión y diagnóstico" data-precio="300"> Revisión y diagnóstico</label>
-            <span>$00 MXN</span>
+            <label>
+                <input type="checkbox" value="Revisión y diagnóstico" data-precio="300">
+                <span>Revisión y diagnóstico</span>
+            </label>
+            <span class="price-tag">$300 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Aplicación de flúor" data-precio="350"> Aplicación de flúor</label>
-            <span>$350 MXN</span>
+            <label>
+                <input type="checkbox" value="Aplicación de flúor" data-precio="350">
+                <span>Aplicación de flúor</span>
+            </label>
+            <span class="price-tag">$350 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Selladores de fosetas y fisuras" data-precio="400"> Selladores de fosetas y fisuras</label>
-            <span>$400 MXN</span>
+            <label>
+                <input type="checkbox" value="Selladores de fosetas y fisuras" data-precio="400">
+                <span>Selladores de fosetas y fisuras</span>
+            </label>
+            <span class="price-tag">$400 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Empastes u obturaciones" data-precio="800"> Empastes u obturaciones</label>
-            <span>$800 MXN</span>
+            <label>
+                <input type="checkbox" value="Empastes u obturaciones" data-precio="800">
+                <span>Empastes u obturaciones</span>
+            </label>
+            <span class="price-tag">$800 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Endodoncia (tratamiento de conductos)" data-precio="2500"> Endodoncia (tratamiento de conductos)</label>
-            <span>$2,500 MXN</span>
+            <label>
+                <input type="checkbox" value="Endodoncia (tratamiento de conductos)" data-precio="2500">
+                <span>Endodoncia (tratamiento de conductos)</span>
+            </label>
+            <span class="price-tag">$2,500 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Coronas o fundas dentales" data-precio="3500"> Coronas o fundas dentales</label>
-            <span>$3,500 MXN</span>
+            <label>
+                <input type="checkbox" value="Coronas o fundas dentales" data-precio="3500">
+                <span>Coronas o fundas dentales</span>
+            </label>
+            <span class="price-tag">$3,500 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Puentes dentales" data-precio="6000"> Puentes dentales</label>
-            <span>$6,000 MXN</span>
+            <label>
+                <input type="checkbox" value="Puentes dentales" data-precio="6000">
+                <span>Puentes dentales</span>
+            </label>
+            <span class="price-tag">$6,000 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Exodoncia simple" data-precio="600"> Exodoncia simple</label>
-            <span>$600 MXN</span>
+            <label>
+                <input type="checkbox" value="Exodoncia simple" data-precio="600">
+                <span>Exodoncia simple</span>
+            </label>
+            <span class="price-tag">$600 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Extracción de muelas del juicio" data-precio="1500"> Extracción de muelas del juicio</label>
-            <span>$1,500 MXN</span>
+            <label>
+                <input type="checkbox" value="Extracción de muelas del juicio" data-precio="1500">
+                <span>Extracción de muelas del juicio</span>
+            </label>
+            <span class="price-tag">$1,500 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Raspado y alisado radicular" data-precio="1200"> Raspado y alisado radicular (limpieza profunda)</label>
-            <span>$1,200 MXN</span>
+            <label>
+                <input type="checkbox" value="Raspado y alisado radicular" data-precio="1200">
+                <span>Raspado y alisado radicular (limpieza profunda)</span>
+            </label>
+            <span class="price-tag">$1,200 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Blanqueamiento dental" data-precio="2500"> Blanqueamiento dental</label>
-            <span>$2,500 MXN</span>
+            <label>
+                <input type="checkbox" value="Blanqueamiento dental" data-precio="2500">
+                <span>Blanqueamiento dental</span>
+            </label>
+            <span class="price-tag">$2,500 MXN</span>
         </li>
         <li class="treatment-item">
-            <label><input type="checkbox" value="Prótesis removibles" data-precio="4500"> Prótesis removibles (parciales o totales)</label>
-            <span>$4,500 MXN</span>
+            <label>
+                <input type="checkbox" value="Prótesis removibles" data-precio="4500">
+                <span>Prótesis removibles (parciales o totales)</span>
+            </label>
+            <span class="price-tag">$4,500 MXN</span>
         </li>
     </ul>
 
-    <div class="total-section">
-        Total Estimado: $<span id="totalPrecio">0</span> MXN
+    <div class="summary-box">
+        <span class="summary-label">Total Estimado:</span>
+        <span class="summary-total">$<span id="totalPrecio">0</span> MXN</span>
     </div>
 
     <button class="btn-whatsapp" onclick="enviarWhatsApp()">Enviar consulta por WhatsApp</button>
@@ -178,7 +342,7 @@
                 total += parseFloat(cb.getAttribute('data-precio'));
             }
         });
-        totalSpan.textContent = total;
+        totalSpan.textContent = total.toLocaleString('en-US');
     }
 
     function enviarWhatsApp() {
@@ -210,7 +374,7 @@
         if (correo) {
             mensaje += `Mi correo es: ${correo}\n`;
         }
-        mensaje += `Me interesan los siguientes tratamientos:\n` + seleccionados.join('\n') + `\n\nTotal estimado: $${total} MXN.\nMe gustaría agendar una cita o recibir más información.`;
+        mensaje += `Me interesan los siguientes tratamientos:\n` + seleccionados.join('\n') + `\n\nTotal estimado: $${total.toLocaleString('en-US')} MXN.\nMe gustaría agendar una cita o recibir más información.`;
 
         const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
