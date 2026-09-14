@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precios y Cotización - Dental Coronado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #0066cc;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .treatment-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .treatment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .treatment-item:hover {
+            background-color: #f9f9f9;
+        }
+        .total-section {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: right;
+            margin: 20px 0;
+        }
+        .btn-whatsapp {
+            display: block;
+            width: 100%;
+            background-color: #25d366;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        .btn-whatsapp:hover {
+            background-color: #1ebe5d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Dental Coronado</h1>
+    <h2>Lista de Precios y Cotización Interactiva</h2>
+    
+    <div class="form-group">
+        <label for="nombrePaciente">Nombre del Paciente:</label>
+        <input type="text" id="nombrePaciente" placeholder="Escribe tu nombre completo">
+    </div>
+
+    <div class="form-group">
+        <label for="correoPaciente">Correo Electrónico:</label>
+        <input type="email" id="correoPaciente" placeholder="correo@ejemplo.com">
+    </div>
+
+    <h3>Selecciona los tratamientos que necesitas:</h3>
+    
+    <ul class="treatment-list" id="listaTratamientos">
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Limpieza dental profesional (profilaxis)" data-precio="500"> Limpieza dental profesional (profilaxis)</label>
+            <span>$600 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Revisión y diagnóstico" data-precio="300"> Revisión y diagnóstico</label>
+            <span>$00 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Aplicación de flúor" data-precio="350"> Aplicación de flúor</label>
+            <span>$350 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Selladores de fosetas y fisuras" data-precio="400"> Selladores de fosetas y fisuras</label>
+            <span>$400 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Empastes u obturaciones" data-precio="800"> Empastes u obturaciones</label>
+            <span>$800 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Endodoncia (tratamiento de conductos)" data-precio="2500"> Endodoncia (tratamiento de conductos)</label>
+            <span>$2,500 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Coronas o fundas dentales" data-precio="3500"> Coronas o fundas dentales</label>
+            <span>$3,500 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Puentes dentales" data-precio="6000"> Puentes dentales</label>
+            <span>$6,000 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Exodoncia simple" data-precio="600"> Exodoncia simple</label>
+            <span>$600 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Extracción de muelas del juicio" data-precio="1500"> Extracción de muelas del juicio</label>
+            <span>$1,500 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Raspado y alisado radicular" data-precio="1200"> Raspado y alisado radicular (limpieza profunda)</label>
+            <span>$1,200 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Blanqueamiento dental" data-precio="2500"> Blanqueamiento dental</label>
+            <span>$2,500 MXN</span>
+        </li>
+        <li class="treatment-item">
+            <label><input type="checkbox" value="Prótesis removibles" data-precio="4500"> Prótesis removibles (parciales o totales)</label>
+            <span>$4,500 MXN</span>
+        </li>
+    </ul>
+
+    <div class="total-section">
+        Total Estimado: $<span id="totalPrecio">0</span> MXN
+    </div>
+
+    <button class="btn-whatsapp" onclick="enviarWhatsApp()">Enviar consulta por WhatsApp</button>
+</div>
+
+<script>
+    // Cambia este número por el de tu consultorio en formato internacional sin el signo + (ej: 521XXXXXXXXXX)
+    const numeroWhatsApp = "526645018908"; 
+
+    const checkboxes = document.querySelectorAll('#listaTratamientos input[type="checkbox"]');
+    const totalSpan = document.getElementById('totalPrecio');
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', calcularTotal);
+    });
+
+    function calcularTotal() {
+        let total = 0;
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                total += parseFloat(cb.getAttribute('data-precio'));
+            }
+        });
+        totalSpan.textContent = total;
+    }
+
+    function enviarWhatsApp() {
+        const nombre = document.getElementById('nombrePaciente').value.trim();
+        const correo = document.getElementById('correoPaciente').value.trim();
+
+        if (!nombre) {
+            alert("Por favor, escribe tu nombre antes de enviar la consulta.");
+            document.getElementById('nombrePaciente').focus();
+            return;
+        }
+
+        let seleccionados = [];
+        let total = 0;
+
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                seleccionados.push("- " + cb.value);
+                total += parseFloat(cb.getAttribute('data-precio'));
+            }
+        });
+
+        if (seleccionados.length === 0) {
+            alert("Por favor, selecciona al menos un tratamiento.");
+            return;
+        }
+
+        let mensaje = `Hola, mi nombre es *${nombre}*.\n`;
+        if (correo) {
+            mensaje += `Mi correo es: ${correo}\n`;
+        }
+        mensaje += `Me interesan los siguientes tratamientos:\n` + seleccionados.join('\n') + `\n\nTotal estimado: $${total} MXN.\nMe gustaría agendar una cita o recibir más información.`;
+
+        const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensaje)}`;
+        window.open(url, '_blank');
+    }
+</script>
+
+</body>
+</html>
